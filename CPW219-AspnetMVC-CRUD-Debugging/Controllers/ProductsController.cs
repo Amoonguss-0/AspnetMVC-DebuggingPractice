@@ -29,6 +29,8 @@ namespace CPW219_AspnetMVC_CRUD_Debugging.Controllers
             if (ModelState.IsValid)
             {
                 await _context.AddAsync(product);
+                _context.SaveChanges();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
@@ -75,6 +77,10 @@ namespace CPW219_AspnetMVC_CRUD_Debugging.Controllers
         {
             var product = await _context.Product.FindAsync(id);
             _context.Product.Remove(product);
+            if (product != null) { 
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            }
             return RedirectToAction(nameof(Index));
         }
 
