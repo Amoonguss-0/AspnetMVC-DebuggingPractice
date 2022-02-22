@@ -7,9 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 string dbConnection = builder.Configuration.GetConnectionString("CoreWithBugsDB");
-builder.Services.AddDbContext<ProductContext>(
-        options => options.UseSqlServer(dbConnection)
-    );
+builder.Services.AddDbContext<ProductContext>(options => options.UseSqlServer(dbConnection));
 
 var app = builder.Build();
 
